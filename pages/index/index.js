@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    resultsWrapperHeight: 500
+    typeIconsUI: {
+      typesCnt: 4,
+      size: 40,
+      margin: []
+    },
+    resultsWrapperHeight: 0
   },
 
   /**
@@ -15,8 +20,15 @@ Page({
     var that = this
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.windowHeight);
+
+        var windowWidth = res.windowWidth
+        var windowHeight = res.windowHeight
+
         that.setData({
+          typeIconsUI: {
+            size: that.data.typeIconsUI.size,
+            margin: [(100 - that.data.typeIconsUI.size) / 2, (windowWidth / that.data.typeIconsUI.typesCnt - that.data.typeIconsUI.size) / 2]
+          },
           resultsWrapperHeight: res.windowHeight 
           // 顶部导航栏高度
           + 64 

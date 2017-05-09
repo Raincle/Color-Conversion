@@ -1,7 +1,11 @@
 <view class="container">
   <text class="instruction">请选择需要转换的格式</text>
-  <scroll-view class="types-wrapper">
-
+  <scroll-view class="types-wrapper" scroll-x="true">
+    <view class="type rgb-type" style="width:{{typeIconsUI.size}}px;height:{{typeIconsUI.size}}px;border-radius:{{typeIconsUI.size}}px;margin:{{typeIconsUI.margin[0]}}px {{typeIconsUI.margin[1]}}px"></view>
+    <view class="type -type" style="width:{{typeIconsUI.size}}px;height:{{typeIconsUI.size}}px;border-radius:{{typeIconsUI.size}}px;margin:{{typeIconsUI.margin[0]}}px {{typeIconsUI.margin[1]}}px"></view>
+    <view class="type -type" style="width:{{typeIconsUI.size}}px;height:{{typeIconsUI.size}}px;border-radius:{{typeIconsUI.size}}px;margin:{{typeIconsUI.margin[0]}}px {{typeIconsUI.margin[1]}}px"></view>
+    <view class="type -type" style="width:{{typeIconsUI.size}}px;height:{{typeIconsUI.size}}px;border-radius:{{typeIconsUI.size}}px;margin:{{typeIconsUI.margin[0]}}px {{typeIconsUI.margin[1]}}px"></view>
+    <view class="type -type" style="width:{{typeIconsUI.size}}px;height:{{typeIconsUI.size}}px;border-radius:{{typeIconsUI.size}}px;margin:{{typeIconsUI.margin[0]}}px {{typeIconsUI.margin[1]}}px"></view>
   </scroll-view>
 
   <view class="inputs-wrapper"></view>

@@ -5,14 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    resultsWrapperHeight: 500
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowHeight);
+        that.setData({
+          resultsWrapperHeight: res.windowHeight 
+          // 顶部导航栏高度
+          + 64 
+          // 引导语高度
+          - 56 
+          // 格式选择高度
+          - 132 
+          // 结果展示上边距
+          - 16
+        })
+      }
+    }) 
   },
 
   /**

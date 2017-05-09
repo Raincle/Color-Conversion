@@ -4,6 +4,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
   box-sizing: border-box;
+
+  /*系统文字样式*/
+  font-family: PingFang SC;
+  font-weight: lighter;
+  letter-spacing: 4px;
+  font-size: 14px;
 }

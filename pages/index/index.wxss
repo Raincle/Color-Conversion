@@ -1,0 +1,27 @@
+.instruction {
+  height: 24px;
+  line-height: 24px;
+  padding: 16px 0;
+}
+
+.types-wrapper {
+  height: 100px;
+  margin: 16px 0;
+  background-color: lightyellow;
+}
+
+.inputs-wrapper {
+  display: none;
+  position: absolute;
+  width: 80%;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: pink;
+}
+
+.results-wrapper {
+  margin-top: 16px;
+  background-color: lightyellow;
+}

@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    titleOpacity: 1,
+    currentType: "",
     typeIcons: ["#", "RGBA", "HLSA", "CMYK", "L*A*B*"],
     typeIconsUI: {
       typesCnt: 4,
@@ -132,13 +134,16 @@ Page({
         break
     }
 
+
     this.setData({ 
+      titleOpacity: 0,
       shouldShowInputs: "show-inputs-wrapper"
     })
 
   },
   bindDismissInputs: function() {
     this.setData({
+      titleOpacity: 1,
       shouldShowInputs: "hide-inputs-wrapper"
     })
   }

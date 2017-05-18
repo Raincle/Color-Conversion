@@ -18,7 +18,7 @@
   background-color: lightgray;
 }
 
-.inputs-wrapper {
+.inputs-popup {
   display: none;
   position: absolute;
   top: 0;
@@ -33,6 +33,26 @@
 }
 .hide-inputs-wrapper {
   display: none;
+}
+
+.inputs-wrapper {
+  position: absolute;
+  top: 56px;
+  bottom: 80px;
+  left: 40px;
+  right: 40px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.inputs-wrapper text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  line-height: 24px;
+  color: white;
+  top: -40px;
+  left: 0;
 }
  
 .results-wrapper {

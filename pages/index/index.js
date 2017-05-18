@@ -5,11 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    typeIcons: ["#", "RGBA", "HLSA", "CMYK", "L*A*B*"],
     typeIconsUI: {
       typesCnt: 4,
       size: 40,
       margin: []
     },
+    shouldShowInputs: "hide-inputs-wrapper",
+    animationData: {},
     resultsWrapperHeight: 0
   },
 
@@ -24,6 +27,8 @@ Page({
         var windowWidth = res.windowWidth
         var windowHeight = res.windowHeight
 
+        console.log(windowHeight);
+
         that.setData({
           typeIconsUI: {
             size: that.data.typeIconsUI.size,
@@ -31,7 +36,7 @@ Page({
           },
           resultsWrapperHeight: res.windowHeight 
           // 顶部导航栏高度
-          + 64 
+          // + 64 
           // 引导语高度
           - 56 
           // 格式选择高度
@@ -54,7 +59,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
@@ -104,5 +109,37 @@ Page({
    */
   onPullDownRefresh: function () {
     
+  },
+
+  bindChooseType: function(e) {
+    switch (e.target.id) {
+      case "#":
+        console.log("#")
+        break
+      case "RGBA":
+        console.log("RGBA")
+        break
+      case "HLSA":
+        console.log("HLSA")
+        break
+      case "CMYK":
+        console.log("CMYK")
+        break
+      case "L*A*B*":
+        console.log("L*A*B*")
+        break
+      default:
+        break
+    }
+
+    this.setData({ 
+      shouldShowInputs: "show-inputs-wrapper"
+    })
+
+  },
+  bindDismissInputs: function() {
+    this.setData({
+      shouldShowInputs: "hide-inputs-wrapper"
+    })
   }
 })

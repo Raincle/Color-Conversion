@@ -9,7 +9,19 @@
 
   <view class="inputs-popup {{shouldShowInputs}}" bindtap="bindDismissInputs">
     <view class="inputs-wrapper">
-      <text>请输入需要转换的颜色</text>
+      <text  class="inputs-wrapper-title">请输入需要转换的颜色</text>
+      <view class="type-wrapper">
+
+        <view class="#">
+        <input value="#"/>
+        </view>
+
+
+        <view class="action-btn">
+          <text class="btn-text">好了</text>
+        </view>
+      </view>
+
     </view>
   </view>
   <scroll-view class="results-wrapper" style="height: {{resultsWrapperHeight}}px">

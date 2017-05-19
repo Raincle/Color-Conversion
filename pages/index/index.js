@@ -8,6 +8,7 @@ Page({
     titleOpacity: 1,
     currentType: "",
     typeIcons: ["#", "RGBA", "HLSA", "CMYK", "L*A*B*"],
+    sixteenValue: "",
     typeIconsUI: {
       typesCnt: 4,
       size: 40,
@@ -145,6 +146,13 @@ Page({
     this.setData({
       titleOpacity: 1,
       shouldShowInputs: "hide-inputs-wrapper"
+    })
+  },
+  catchStopPropagation: function() {
+  },
+  onSixteenInput: function(e) {
+    this.setData({
+      sixteenValue: e.detail.value.replace(" ", ""),
     })
   }
 })

@@ -8,12 +8,13 @@
   </scroll-view>
 
   <view class="inputs-popup {{shouldShowInputs}}" bindtap="bindDismissInputs">
-    <view class="inputs-wrapper">
+    <view class="inputs-wrapper" catchtap="catchStopPropagation">
       <text  class="inputs-wrapper-title">请输入需要转换的颜色</text>
       <view class="type-wrapper">
 
-        <view class="#">
-        <input value="#"/>
+        <view class="sixteen">
+        <text>#</text>
+        <input value="{{sixteenValue}}" placeholder="ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
         </view>
 
 

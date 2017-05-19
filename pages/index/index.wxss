@@ -58,7 +58,7 @@
 .type-wrapper {
   position: absolute;
   width: 200px;
-  height: 80px;
+  height: auto;
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
@@ -85,6 +85,30 @@
   color: springgreen;
 }
  
+.type-wrapper .sixteen {
+  width: 100%;
+  height: auto;
+}
+
+.type-wrapper .sixteen text {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+}
+
+.type-wrapper .sixteen input {
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: bolder;
+  line-height: 64px;
+  border: 1px solid lightgray;
+  height: 64px;
+  text-align: center;
+}
+
 .results-wrapper {
   margin-top: 16px;
   background-color: lightyellow;

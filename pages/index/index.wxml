@@ -12,9 +12,55 @@
       <text  class="inputs-wrapper-title">请输入需要转换的颜色</text>
       <view class="type-wrapper">
 
-        <view class="sixteen">
+        <view class="sixteen" wx:if="{{currentType == 0}}">
         <text>#</text>
         <input value="{{sixteenValue}}" placeholder="ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
+        </view>
+
+        <view class="rgba" wx:if="{{currentType == 1}}">
+        <text>R</text>
+        <input value="{{rValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onROfRGBAInput" />
+        <text>G</text>
+        <input value="{{gValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onGOfRGBAInput" />
+        <text>B</text>
+        <input value="{{bValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfRGBAInput" />
+        <text>A</text>
+        <text class="percent">%</text>
+        <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" />
+        </view>
+
+        <view class="hlsa" wx:if="{{currentType == 2}}">
+        <text>H</text>
+        <input value="{{hValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHLSAInput" />
+        <text>L</text>
+        <input value="{{lValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHLSAInput" />
+        <text>S</text>
+        <input value="{{sValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHLSAInput" />
+        <text>A</text>
+        <text class="percent">%</text>
+        <input value="{{aValueOfHLSA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHLSAInput" />
+        </view>
+
+        <view class="cmyk" wx:if="{{currentType == 3}}">
+        <text>C</text>
+        <input value="{{cValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" />
+        <text>M</text>
+        <input value="{{mValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" />
+        <text>Y</text>
+        <input value="{{yValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" />
+        <text>K</text>
+        <text class="percent">%</text>
+        <input value="{{kValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onKOfCMYKInput" />
+        </view>
+
+        <view class="lab" wx:if="{{currentType == 4}}">
+        <text>L</text>
+        <input value="{{lValueOfLAB}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" />
+        <text>A</text>
+        <text class="percent">%</text>
+        <input value="{{aValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfLABInput" />
+        <text>B</text>
+        <input value="{{bValueOfLAB}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfLABInput" />
         </view>
 
 

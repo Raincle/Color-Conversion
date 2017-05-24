@@ -6,9 +6,30 @@ Page({
    */
   data: {
     titleOpacity: 1,
-    currentType: "",
+    currentType: 0,
     typeIcons: ["#", "RGBA", "HLSA", "CMYK", "L*A*B*"],
+
     sixteenValue: "",
+
+    rValueOfRGBA: "",
+    gValueOfRGBA: "",
+    bValueOfRGBA: "",
+    aValueOfRGBA: "",
+
+    hValueOfHLSA: "",
+    lValueOfHLSA: "",
+    sValueOfHLSA: "",
+    aValueOfHLSA: "",
+
+    cValueOfCMYK: "",
+    mValueOfCMYK: "",
+    yValueOfCMYK: "",
+    kValueOfCMYK: "",
+
+    lValueOfLAB: "",
+    aValueOfLAB: "",
+    bValueOfLAB: "",
+
     typeIconsUI: {
       typesCnt: 4,
       size: 40,
@@ -117,19 +138,29 @@ Page({
   bindChooseType: function(e) {
     switch (e.target.id) {
       case "#":
-        console.log("#")
+        this.setData({
+          currentType: 0
+        })
         break
       case "RGBA":
-        console.log("RGBA")
+        this.setData({
+          currentType: 1
+        })
         break
       case "HLSA":
-        console.log("HLSA")
+        this.setData({
+          currentType: 2
+        })
         break
       case "CMYK":
-        console.log("CMYK")
+        this.setData({
+          currentType: 3
+        })
         break
       case "L*A*B*":
-        console.log("L*A*B*")
+        this.setData({
+          currentType: 4
+        })
         break
       default:
         break
@@ -154,5 +185,92 @@ Page({
     this.setData({
       sixteenValue: e.detail.value.replace(" ", ""),
     })
-  }
+  },
+
+
+
+  onROfRGBAInput: function (e) {
+    this.setData({
+      rValueOfRGBA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onGOfRGBAInput: function (e) {
+    this.setData({
+      gValueOfRGBA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onBOfRGBAInput: function (e) {
+    this.setData({
+      bValueOfRGBA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onAOfRGBAInput: function (e) {
+    this.setData({
+      aValueOfRGBA: e.detail.value.replace(" ", ""),
+    })
+  },
+
+
+
+  onHOfHLSAInput: function (e) {
+    this.setData({
+      hValueOfHLSA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onLOfHLSAInput: function (e) {
+    this.setData({
+      lValueOfHLSA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onSOfHLSAInput: function (e) {
+    this.setData({
+      sValueOfHLSA: e.detail.value.replace(" ", ""),
+    })
+  },
+  onAOfHLSAInput: function (e) {
+    this.setData({
+      aValueOfHLSA: e.detail.value.replace(" ", ""),
+    })
+  },
+
+
+
+  onCOfCMYKInput: function (e) {
+    this.setData({
+      cValueOfCMYK: e.detail.value.replace(" ", ""),
+    })
+  },
+  onMOfCMYKInput: function (e) {
+    this.setData({
+      mValueOfCMYK: e.detail.value.replace(" ", ""),
+    })
+  },
+  onYOfCMYKInput: function (e) {
+    this.setData({
+      yValueOfCMYK: e.detail.value.replace(" ", ""),
+    })
+  },
+  onKOfCMYKInput: function (e) {
+    this.setData({
+      kValueOfCMYK: e.detail.value.replace(" ", ""),
+    })
+  },
+
+
+
+  onLOfLABInput: function (e) {
+    this.setData({
+      lValueOfLAB: e.detail.value.replace(" ", ""),
+    })
+  },
+  onAOfLABInput: function (e) {
+    this.setData({
+      aValueOfLAB: e.detail.value.replace(" ", ""),
+    })
+  },
+  onBOfLABInput: function (e) {
+    this.setData({
+      bValueOfLAB: e.detail.value.replace(" ", ""),
+    })
+  },
 })

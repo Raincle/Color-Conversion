@@ -85,6 +85,7 @@
   color: springgreen;
 }
  
+ /*sixteen*/
 .type-wrapper .sixteen {
   width: 100%;
   height: auto;
@@ -112,4 +113,149 @@
 .results-wrapper {
   margin-top: 16px;
   background-color: lightyellow;
+}
+
+
+/*RGBA*/
+.type-wrapper .rgba {
+  width: 100%;
+  height: auto;
+}
+
+.rgba text {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.rgba input {
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: bolder;
+  line-height: 40px;
+  border: 1px solid lightgray;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.rgba .percent {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  line-height: 40px;
+  text-align: center;
+}
+
+/*HLSA*/
+.type-wrapper .hlsa {
+  width: 100%;
+  height: auto;
+}
+
+.hlsa text {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.hlsa input {
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: bolder;
+  line-height: 40px;
+  border: 1px solid lightgray;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.hlsa .percent {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  line-height: 40px;
+  text-align: center;
+}
+
+/*CMYK*/
+.type-wrapper .cmyk {
+  width: 100%;
+  height: auto;
+}
+
+.cmyk text {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.cmyk input {
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: bolder;
+  line-height: 40px;
+  border: 1px solid lightgray;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.cmyk .percent {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  line-height: 40px;
+  text-align: center;
+}
+
+/*LAB*/
+.type-wrapper .lab {
+  width: 100%;
+  height: auto;
+}
+
+.lab text {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.lab input {
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: bolder;
+  line-height: 40px;
+  border: 1px solid lightgray;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.lab .percent {
+  position: absolute;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  line-height: 40px;
+  text-align: center;
 }

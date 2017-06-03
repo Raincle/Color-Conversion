@@ -31,13 +31,17 @@ Page({
     bValueOfLAB: "",
 
     typeIconsUI: {
-      typesCnt: 4,
-      size: 40,
-      margin: []
+      width: 250,
+      height: 160,
     },
+    firstTypeMarginLeft: 0,
     shouldShowInputs: "hide-inputs-wrapper",
+    inputsWrapperHeight: 300,
     animationData: {},
-    resultsWrapperHeight: 0
+    resultsWrapperHeight: 0,
+
+    touchStartLeft: 0,
+    animationData: {}
   },
 
   /**
@@ -51,13 +55,8 @@ Page({
         var windowWidth = res.windowWidth
         var windowHeight = res.windowHeight
 
-        console.log(windowHeight);
-
         that.setData({
-          typeIconsUI: {
-            size: that.data.typeIconsUI.size,
-            margin: [(100 - that.data.typeIconsUI.size) / 2, (windowWidth / that.data.typeIconsUI.typesCnt - that.data.typeIconsUI.size) / 2]
-          },
+          firstTypeMarginLeft: (windowWidth - 250) / 2,
           resultsWrapperHeight: res.windowHeight 
           // 顶部导航栏高度
           // + 64 
@@ -139,27 +138,32 @@ Page({
     switch (e.target.id) {
       case "#":
         this.setData({
-          currentType: 0
+          currentType: 0,
+          inputsWrapperHeight: 300
         })
         break
       case "RGBA":
         this.setData({
-          currentType: 1
+          currentType: 1,
+          inputsWrapperHeight: 400
         })
         break
       case "HLSA":
         this.setData({
-          currentType: 2
+          currentType: 2,
+          inputsWrapperHeight: 400
         })
         break
       case "CMYK":
         this.setData({
-          currentType: 3
+          currentType: 3,
+          inputsWrapperHeight: 400
         })
         break
       case "L*A*B*":
         this.setData({
-          currentType: 4
+          currentType: 4,
+          inputsWrapperHeight: 350
         })
         break
       default:
@@ -273,4 +277,50 @@ Page({
       bValueOfLAB: e.detail.value.replace(" ", ""),
     })
   },
+
+  confirmInputs: function () {
+    this.setData({
+      titleOpacity: 1,
+      shouldShowInputs: "hide-inputs-wrapper"
+    })
+  },
+  onGalleryTouchStart: function (e) {
+    this.setData({
+      touchStartLeft: e.touches[0].clientX,
+    })
+  },
+  onGalleryTouchEnd: function (e) {
+    var that = this
+    var start = that.data.touchStartLeft
+    var end = e.changedTouches[0].clientX
+    var index = that.data.currentType
+    var typesLength = that.data.typeIcons.length
+    var left
+    if ((end - start) > 0) {
+      index -= 1
+    } else if ((end - start) < 0) {
+      index += 1
+    }
+    if (index < 0) {
+      index = 0
+      left = 0
+    } else if (index > (typesLength - 1)) {
+      index = typesLength - 1
+      left = - (typesLength - 1) * (that.data.typeIconsUI.width + 20)
+    } else {
+      left = - index * (that.data.typeIconsUI.width + 20)
+    }
+
+    var animation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 0
+    })
+
+    that.setData({
+      currentType: index,
+      animationData: animation.left(left).step().export(),
+    })
+  }
 })

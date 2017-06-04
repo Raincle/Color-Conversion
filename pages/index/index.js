@@ -348,6 +348,11 @@ Page({
   },
   onAOfLABInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
+    if (strValue[0] == "-") {
+      strValue = "-" + strValue.replace(/[-]/ig, "")
+    } else {
+      strValue = strValue.replace(/[-]/ig, "")
+    }
     if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -357,6 +362,11 @@ Page({
   },
   onBOfLABInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
+    if (strValue[0] == "-") {
+      strValue = "-" + strValue.replace(/[-]/ig, "")
+    } else {
+      strValue = strValue.replace(/[-]/ig, "")
+    }
     if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
       strValue = strValue.substring(0, strValue.length - 1)
     }

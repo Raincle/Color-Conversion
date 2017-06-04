@@ -212,15 +212,16 @@ Page({
   catchStopPropagation: function() {
   },
   onSixteenInput: function(e) {
+    var strValue = e.detail.value.replace(/[^0-9a-f]/ig, "")
     this.setData({
-      sixteenValue: e.detail.value.replace(" ", ""),
+      sixteenValue: strValue,
     })
   },
 
 
 
   onROfRGBAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue)> 255) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -229,7 +230,7 @@ Page({
     })
   },
   onGOfRGBAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 255) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -238,7 +239,7 @@ Page({
     })
   },
   onBOfRGBAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 255) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -247,7 +248,7 @@ Page({
     })
   },
   onAOfRGBAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -259,7 +260,7 @@ Page({
 
 
   onHOfHSLAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 360) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -268,7 +269,7 @@ Page({
     })
   },
   onLOfHSLAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -277,7 +278,7 @@ Page({
     })
   },
   onSOfHSLAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -286,7 +287,7 @@ Page({
     })
   },
   onAOfHSLAInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -298,7 +299,7 @@ Page({
 
 
   onCOfCMYKInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -307,7 +308,7 @@ Page({
     })
   },
   onMOfCMYKInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -316,7 +317,7 @@ Page({
     })
   },
   onYOfCMYKInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -325,7 +326,7 @@ Page({
     })
   },
   onKOfCMYKInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -337,7 +338,7 @@ Page({
 
 
   onLOfLABInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9]/ig, "")
     if (parseInt(strValue) > 100) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -346,7 +347,7 @@ Page({
     })
   },
   onAOfLABInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
     if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
@@ -355,7 +356,7 @@ Page({
     })
   },
   onBOfLABInput: function (e) {
-    var strValue = e.detail.value.replace(" ", "")
+    var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
     if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
       strValue = strValue.substring(0, strValue.length - 1)
     }

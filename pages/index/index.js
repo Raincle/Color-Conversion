@@ -30,6 +30,9 @@ Page({
     lValueOfLAB: "",
     aValueOfLAB: "",
     bValueOfLAB: "",
+    aSymbol: "正",
+    bSymbol: "正",
+
 
     typeIconsUI: {
       width: 250,
@@ -372,6 +375,42 @@ Page({
     }
     this.setData({
       bValueOfLAB: strValue,
+    })
+  },
+  onASymbolChange: function() {
+    var a = this.data.aValueOfLAB
+    var aSymbol
+    if (a[0] != "-") {
+      a = "-" + a
+      aSymbol = "负"
+    } else {
+      a = a.replace(/[-]/ig, "")
+      if (parseInt(a) > 127) {
+        a = 127
+      }
+      aSymbol = "正"
+    }
+    this.setData({
+      aSymbol: aSymbol,
+      aValueOfLAB: a
+    })
+  },
+  onBSymbolChange: function () {
+    var b = this.data.bValueOfLAB
+    var bSymbol
+    if (b[0] != "-") {
+      b = "-" + b
+      bSymbol = "负"
+    } else {
+      b = b.replace(/[-]/ig, "")
+      if (parseInt(b) > 127) {
+        b = 127
+      }
+      bSymbol = "正"
+    }
+    this.setData({
+      bSymbol: bSymbol,
+      bValueOfLAB: b
     })
   },
 

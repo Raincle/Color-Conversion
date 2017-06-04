@@ -33,48 +33,50 @@
         <text>B</text>
         <input value="{{bValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfRGBAInput" type="number"/>
         <text>A</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" type="number"/>
         </view>
 
         <view class="hsla" wx:if="{{currentType == 2}}">
         <text>H</text>
-        <text class="percent">°</text>
+        <text class="unit">°</text>
         <input value="{{hValueOfHSLA}}" placeholder="0~360" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHSLAInput" type="number"/>
         <text>S</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{sValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHSLAInput" type="number"/>
         <text>L</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{lValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHSLAInput" type="number"/>
         <text>A</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{aValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHSLAInput" type="number"/>
         </view>
 
         <view class="cmyk" wx:if="{{currentType == 3}}">
         <text>C</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{cValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" type="number" />
         <text>M</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{mValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" type="number"/>
         <text>Y</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{yValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" type="number" />
         <text>K</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{kValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onKOfCMYKInput" type="number"/>
         </view>
 
         <view class="lab" wx:if="{{currentType == 4}}">
         <text>L</text>
-        <text class="percent">%</text>
+        <text class="unit">%</text>
         <input value="{{lValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" type="number" />
         <text>a</text>
-        <input value="{{aValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onAOfLABInput" type="number" />
+        <text class="symbol symbol-one" bindtap="onASymbolChange">{{aSymbol}}</text>
+        <input class="lab-a-input" value="{{aValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onAOfLABInput" type="number" />
         <text>b</text>
-        <input value="{{bValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onBOfLABInput" type="number"/>
+        <text class="symbol symbol-two" bindtap="onBSymbolChange">{{bSymbol}}</text>
+        <input class="lab-b-input" value="{{bValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onBOfLABInput" type="number"/>
         </view>
 
 

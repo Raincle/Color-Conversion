@@ -150,7 +150,7 @@
   margin-bottom: 8px;
 }
 
-.rgba .percent {
+.rgba .unit {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -186,7 +186,7 @@
   margin-bottom: 8px;
 }
 
-.hsla .percent {
+.hsla .unit {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -222,7 +222,7 @@
   margin-bottom: 8px;
 }
 
-.cmyk .percent {
+.cmyk .unit {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -258,7 +258,7 @@
   margin-bottom: 8px;
 }
 
-.lab .percent {
+.lab .unit {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -266,6 +266,30 @@
   right: 0;
   line-height: 40px;
   text-align: center;
+}
+.lab .symbol {
+  position: absolute;
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  right: 7px;
+  line-height: 24px;
+  text-align: center;
+  z-index: 100;
+}
+.lab-a-input {
+  padding: 0 30px;
+}
+.lab-b-input {
+  padding: 0 30px;
+}
+.lab .symbol-one {
+  top: 58px;
+}
+.lab .symbol-two {
+  top: 108px;
 }
 
 .indicator-wrapper {

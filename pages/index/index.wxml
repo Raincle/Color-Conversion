@@ -108,7 +108,7 @@
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">#</view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">#</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">十六进制色值</text>          
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">十六进制</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{sixteenValue}}</text>
         </view>
       </view>

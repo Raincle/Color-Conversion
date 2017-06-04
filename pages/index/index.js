@@ -219,6 +219,7 @@ Page({
     this.setData({
       sixteenValue: strValue,
     })
+    this.colorUpdate()
   },
 
 
@@ -231,6 +232,7 @@ Page({
     this.setData({
       rValueOfRGBA: strValue,
     })
+    this.colorUpdate()
   },
   onGOfRGBAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -240,6 +242,7 @@ Page({
     this.setData({
       gValueOfRGBA: strValue,
     })
+    this.colorUpdate()
   },
   onBOfRGBAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -249,6 +252,7 @@ Page({
     this.setData({
       bValueOfRGBA: strValue,
     })
+    this.colorUpdate()
   },
   onAOfRGBAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -258,6 +262,7 @@ Page({
     this.setData({
       aValueOfRGBA: strValue,
     })
+    this.colorUpdate()
   },
 
 
@@ -270,6 +275,7 @@ Page({
     this.setData({
       hValueOfHSLA: strValue,
     })
+    this.colorUpdate()
   },
   onLOfHSLAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -279,6 +285,7 @@ Page({
     this.setData({
       lValueOfHSLA: strValue,
     })
+    this.colorUpdate()
   },
   onSOfHSLAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -288,6 +295,7 @@ Page({
     this.setData({
       sValueOfHSLA: strValue,
     })
+    this.colorUpdate()
   },
   onAOfHSLAInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -297,6 +305,7 @@ Page({
     this.setData({
       aValueOfHSLA: strValue,
     })
+    this.colorUpdate()
   },
 
 
@@ -309,6 +318,7 @@ Page({
     this.setData({
       cValueOfCMYK: strValue,
     })
+    this.colorUpdate()
   },
   onMOfCMYKInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -318,6 +328,7 @@ Page({
     this.setData({
       mValueOfCMYK: strValue,
     })
+    this.colorUpdate()
   },
   onYOfCMYKInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -327,6 +338,7 @@ Page({
     this.setData({
       yValueOfCMYK: strValue,
     })
+    this.colorUpdate()
   },
   onKOfCMYKInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9]/ig, "")
@@ -336,6 +348,7 @@ Page({
     this.setData({
       kValueOfCMYK: strValue,
     })
+    this.colorUpdate()
   },
 
 
@@ -348,6 +361,7 @@ Page({
     this.setData({
       lValueOfLAB: strValue,
     })
+    this.colorUpdate()
   },
   onAOfLABInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
@@ -362,6 +376,7 @@ Page({
     this.setData({
       aValueOfLAB: strValue,
     })
+    this.colorUpdate()
   },
   onBOfLABInput: function (e) {
     var strValue = e.detail.value.replace(/[^0-9-]/ig, "")
@@ -376,6 +391,7 @@ Page({
     this.setData({
       bValueOfLAB: strValue,
     })
+    this.colorUpdate()
   },
   onASymbolChange: function() {
     var a = this.data.aValueOfLAB
@@ -394,6 +410,7 @@ Page({
       aSymbol: aSymbol,
       aValueOfLAB: a
     })
+    this.colorUpdate()
   },
   onBSymbolChange: function () {
     var b = this.data.bValueOfLAB
@@ -412,6 +429,7 @@ Page({
       bSymbol: bSymbol,
       bValueOfLAB: b
     })
+    this.colorUpdate()
   },
 
   confirmInputs: function () {
@@ -419,6 +437,7 @@ Page({
       titleOpacity: 1,
       shouldShowInputs: "hide-inputs-wrapper"
     })
+    this.colorUpdate()
   },
   onGalleryTouchStart: function (e) {
     this.setData({
@@ -489,5 +508,135 @@ Page({
       resultThreeAnimation: resultThreeAnimation.left(resultLeft).step().export(),
       resultFourAnimation: resultFourAnimation.left(resultLeft).step().export(),
     })
+  },
+  colorUpdate: function() {
+    var that = this
+    var currentType = this.data.currentType
+    var currentColor
+    switch (currentType) {
+      case 0:
+        var sixteenValue = that.data.sixteenValue
+        var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
+        var g = parseInt(sixteenValue[2] + sixteenValue[3], 16)
+        var b = parseInt(sixteenValue[4] + sixteenValue[5], 16)
+        that.setData({
+          currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + 1 + ')',
+          rValueOfRGBA: r,
+          gValueOfRGBA: g,
+          bValueOfRGBA: b,
+          aValueOfRGBA: '100',
+
+          hValueOfHSLA: '',
+          sValueOfHSLA: '',
+          lValueOfHSLA: '',
+          aValueOfHSLA: '100',
+
+          cValueOfCMYK: '',
+          mValueOfCMYK: '',
+          yValueOfCMYK: '',
+          kValueOfCMYK: '',
+
+          lValueOfLAB: '',
+          aValueOfLAB: '',
+          bValueOfLAB: '',
+        })
+        break
+      case 1:
+        var r = that.data.rValueOfRGBA
+        var g = that.data.gValueOfRGBA
+        var b = that.data.bValueOfRGBA
+        var a = that.data.aValueOfRGBA
+        var sixteen = parseInt(r).toString(16) + parseInt(g).toString(16) + parseInt(b).toString(16)
+        that.setData({
+          currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + a / 100 + ')',
+          sixteenValue: sixteen,
+
+          hValueOfHSLA: '',
+          sValueOfHSLA: '',
+          lValueOfHSLA: '',
+          aValueOfHSLA: a,
+
+          cValueOfCMYK: '',
+          mValueOfCMYK: '',
+          yValueOfCMYK: '',
+          kValueOfCMYK: '',
+
+          lValueOfLAB: '',
+          aValueOfLAB: '',
+          bValueOfLAB: '',
+        })
+        break
+      case 2:
+        var hValueOfHSLA = that.data.hValueOfHSLA
+        var lValueOfHSLA = that.data.lValueOfHSLA
+        var sValueOfHSLA = that.data.sValueOfHSLA
+        var aValueOfHSLA = that.data.aValueOfHSLA
+        that.setData({
+          sixteenValue: '',
+
+          rValueOfRGBA: '',
+          gValueOfRGBA: '',
+          bValueOfRGBA: '',
+          aValueOfRGBA: '',
+
+          cValueOfCMYK: '',
+          mValueOfCMYK: '',
+          yValueOfCMYK: '',
+          kValueOfCMYK: '',
+
+          lValueOfLAB: '',
+          aValueOfLAB: '',
+          bValueOfLAB: '',
+        })
+        break
+      case 3:
+        var cValueOfCMYK = that.data.cValueOfCMYK
+        var mValueOfCMYK = that.data.mValueOfCMYK
+        var yValueOfCMYK = that.data.yValueOfCMYK
+        var kValueOfCMYK = that.data.kValueOfCMYK
+        that.setData({
+          sixteenValue: '',
+
+          rValueOfRGBA: '',
+          gValueOfRGBA: '',
+          bValueOfRGBA: '',
+          aValueOfRGBA: '',
+
+          hValueOfHSLA: '',
+          sValueOfHSLA: '',
+          lValueOfHSLA: '',
+          aValueOfHSLA: '',
+
+          lValueOfLAB: '',
+          aValueOfLAB: '',
+          bValueOfLAB: '',
+        })
+        break
+      case 4:
+        var lValueOfLAB = that.data.lValueOfLAB
+        var aValueOfLAB = that.data.aValueOfLAB
+        var bValueOfLAB = that.data.bValueOfLAB
+        that.setData({
+          sixteenValue: '',
+
+          rValueOfRGBA: '',
+          gValueOfRGBA: '',
+          bValueOfRGBA: '',
+          aValueOfRGBA: '',
+
+          hValueOfHSLA: '',
+          sValueOfHSLA: '',
+          lValueOfHSLA: '',
+          aValueOfHSLA: '',
+
+          cValueOfCMYK: '',
+          mValueOfCMYK: '',
+          yValueOfCMYK: '',
+          kValueOfCMYK: '',
+        })
+        break
+      default:
+        break
+    }
   }
 })

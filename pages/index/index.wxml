@@ -27,54 +27,54 @@
 
         <view class="rgba" wx:if="{{currentType == 1}}">
         <text>R</text>
-        <input value="{{rValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onROfRGBAInput" />
+        <input value="{{rValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onROfRGBAInput" type="number"/>
         <text>G</text>
-        <input value="{{gValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onGOfRGBAInput" />
+        <input value="{{gValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onGOfRGBAInput" type="number"/>
         <text>B</text>
-        <input value="{{bValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfRGBAInput" />
+        <input value="{{bValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfRGBAInput" type="number"/>
         <text>A</text>
         <text class="percent">%</text>
-        <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" />
+        <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" type="number"/>
         </view>
 
         <view class="hsla" wx:if="{{currentType == 2}}">
         <text>H</text>
         <text class="percent">°</text>
-        <input value="{{hValueOfHSLA}}" placeholder="0~360" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHSLAInput" />
+        <input value="{{hValueOfHSLA}}" placeholder="0~360" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHSLAInput" type="number"/>
         <text>S</text>
         <text class="percent">%</text>
-        <input value="{{sValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHSLAInput" />
+        <input value="{{sValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHSLAInput" type="number"/>
         <text>L</text>
         <text class="percent">%</text>
-        <input value="{{lValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHSLAInput" />
+        <input value="{{lValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHSLAInput" type="number"/>
         <text>A</text>
         <text class="percent">%</text>
-        <input value="{{aValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHSLAInput" />
+        <input value="{{aValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHSLAInput" type="number"/>
         </view>
 
         <view class="cmyk" wx:if="{{currentType == 3}}">
         <text>C</text>
         <text class="percent">%</text>
-        <input value="{{cValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" />
+        <input value="{{cValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" type="number" />
         <text>M</text>
         <text class="percent">%</text>
-        <input value="{{mValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" />
+        <input value="{{mValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" type="number"/>
         <text>Y</text>
         <text class="percent">%</text>
-        <input value="{{yValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" />
+        <input value="{{yValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" type="number" />
         <text>K</text>
         <text class="percent">%</text>
-        <input value="{{kValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onKOfCMYKInput" />
+        <input value="{{kValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onKOfCMYKInput" type="number"/>
         </view>
 
         <view class="lab" wx:if="{{currentType == 4}}">
         <text>L</text>
         <text class="percent">%</text>
-        <input value="{{lValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" />
+        <input value="{{lValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" type="number" />
         <text>a</text>
-        <input value="{{aValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfLABInput" />
+        <input value="{{aValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onAOfLABInput" type="number" />
         <text>b</text>
-        <input value="{{bValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfLABInput" />
+        <input value="{{bValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="4" bindinput="onBOfLABInput" type="number"/>
         </view>
 
 
@@ -130,7 +130,7 @@
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">C</view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Cyan</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">青色色值</text>          
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">青色色度</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{cValueOfCMYK}}%</text>
         </view>
       </view>
@@ -173,7 +173,7 @@
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">M</view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Magenta</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">品红色值</text>          
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">品红色度</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{mValueOfCMYK}}%</text>
         </view>
       </view>
@@ -216,7 +216,7 @@
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Y</view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Yellow</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">黄色色值</text>          
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">黄色色度</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{yValueOfCMYK}}%</text>
         </view>
       </view>
@@ -259,7 +259,7 @@
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">K</view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Key Plate</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">定位套版色色值</text>          
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">定位套版色度</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{kValueOfCMYK}}%</text>
         </view>
       </view>

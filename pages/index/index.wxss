@@ -300,6 +300,9 @@
   top: 218px;
   margin-top: 16px;
 }
+.results-wrapper text {
+  letter-spacing: 0;
+}
 .result {
   position: absolute;
   left: 0;

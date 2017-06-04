@@ -346,13 +346,21 @@ Page({
     })
   },
   onAOfLABInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      aValueOfLAB: e.detail.value.replace(" ", ""),
+      aValueOfLAB: strValue,
     })
   },
   onBOfLABInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 127 || parseInt(strValue) < -128) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      bValueOfLAB: e.detail.value.replace(" ", ""),
+      bValueOfLAB: strValue,
     })
   },
 

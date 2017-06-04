@@ -5,11 +5,11 @@
       bindtouchstart="onGalleryTouchStart"
       bindtouchend="onGalleryTouchEnd"
       class="types-gallery"
-      style="width: {{typeIcons.length * 270 + firstTypeMarginLeft - 10}}px"
+      style="width: {{typeIcons.length * (typeIconsUI.width + 20) + firstTypeMarginLeft - 10}}px"
       animation="{{animationData}}"
     >
       <block wx:for="{{typeIcons}}" wx:key="typeIcons">
-      <view class="type" id="{{item}}" bindtap="bindChooseType" style="margin-left:{{index == 0 ? firstTypeMarginLeft: 10}}px">{{item}}</view>
+      <view class="type" id="{{item}}" bindtap="bindChooseType" style="margin-left:{{index == 0 ? firstTypeMarginLeft: 10}}px;width:{{typeIconsUI.width}}px">{{item}}</view>
       </block>
     </view>
    
@@ -37,25 +37,31 @@
         <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" />
         </view>
 
-        <view class="hlsa" wx:if="{{currentType == 2}}">
+        <view class="hsla" wx:if="{{currentType == 2}}">
         <text>H</text>
-        <input value="{{hValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHLSAInput" />
-        <text>L</text>
-        <input value="{{lValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHLSAInput" />
+        <text class="percent">°</text>
+        <input value="{{hValueOfHSLA}}" placeholder="0~360" placeholder-style="color: lightgray;" maxlength="3" bindinput="onHOfHSLAInput" />
         <text>S</text>
-        <input value="{{sValueOfHLSA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHLSAInput" />
+        <text class="percent">%</text>
+        <input value="{{sValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onSOfHSLAInput" />
+        <text>L</text>
+        <text class="percent">%</text>
+        <input value="{{lValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfHSLAInput" />
         <text>A</text>
         <text class="percent">%</text>
-        <input value="{{aValueOfHLSA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHLSAInput" />
+        <input value="{{aValueOfHSLA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfHSLAInput" />
         </view>
 
         <view class="cmyk" wx:if="{{currentType == 3}}">
         <text>C</text>
-        <input value="{{cValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" />
+        <text class="percent">%</text>
+        <input value="{{cValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onCOfCMYKInput" />
         <text>M</text>
-        <input value="{{mValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" />
+        <text class="percent">%</text>
+        <input value="{{mValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onMOfCMYKInput" />
         <text>Y</text>
-        <input value="{{yValueOfCMYK}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" />
+        <text class="percent">%</text>
+        <input value="{{yValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onYOfCMYKInput" />
         <text>K</text>
         <text class="percent">%</text>
         <input value="{{kValueOfCMYK}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onKOfCMYKInput" />
@@ -63,12 +69,12 @@
 
         <view class="lab" wx:if="{{currentType == 4}}">
         <text>L</text>
-        <input value="{{lValueOfLAB}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" />
-        <text>A</text>
         <text class="percent">%</text>
-        <input value="{{aValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfLABInput" />
-        <text>B</text>
-        <input value="{{bValueOfLAB}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfLABInput" />
+        <input value="{{lValueOfLAB}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onLOfLABInput" />
+        <text>a</text>
+        <input value="{{aValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfLABInput" />
+        <text>b</text>
+        <input value="{{bValueOfLAB}}" placeholder="-128~127" placeholder-style="color: lightgray;" maxlength="3" bindinput="onBOfLABInput" />
         </view>
 
 
@@ -82,12 +88,184 @@
 
   <view class="indicator-wrapper">
     <block wx:for="{{typeIcons}}" wx:key="typeIcons">
-    <view class="indicator"></view>
+    <view class="indicator" style="background-color:{{currentColor == '' ? (index == currentType ? 'black' : 'lightgray') : (index == currentType ? currentColor : 'lightgray')}}"></view>
     </block>
   </view>
   <view class="seperator" style="width:{{typeIconsUI.width}}px"></view>
 
-  <view class="results-wrapper" style="height: {{resultsWrapperHeight}}px">
+  <view class="results-wrapper" style="width:{{windowWidth}}px;height: {{resultsWrapperHeight}}px">
+
+
+
+    <view
+      class="result result-one"
+      style="width:{{windowWidth*5}}px;height:{{resultsWrapperHeight/5}}px;top:0;"
+      animation="{{resultOneAnimation}}"
+    >
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">#</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">#</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">十六进制色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{sixteenValue}}</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">R</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Red</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">红色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{rValueOfRGBA}}</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">H</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Hue</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">色相</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{hValueOfHSLA}}°</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">C</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Cyan</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">青色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{cValueOfCMYK}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">L</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Lightness</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">亮度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{lValueOfLAB}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <view
+      class="result result-two"
+      style="width:{{windowWidth*5}}px;height:{{resultsWrapperHeight/5}}px;top:{{resultsWrapperHeight/5}}px;"
+      animation="{{resultTwoAnimation}}"
+    >
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">G</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Green</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">绿色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{gValueOfRGBA}}</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">S</view>
+           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Saturation</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">饱和度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{sValueOfHSLA}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">M</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Magenta</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">品红色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{mValueOfCMYK}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">a</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Green–Red</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">绿红区间值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aValueOfLAB}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view
+      class="result result-three"
+      style="width:{{windowWidth*5}}px;height:{{resultsWrapperHeight/5}}px;top:{{resultsWrapperHeight/5*2}}px;"
+      animation="{{resultThreeAnimation}}"
+    >
+    <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">B</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Blue</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">蓝色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{bValueOfRGBA}}</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">L</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Lightness</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">亮度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{lValueOfHSLA}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Y</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Yellow</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">黄色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{yValueOfCMYK}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">b</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Blue–Yellow</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">蓝黄区间值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{bValueOfLAB}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view
+      class="result result-four"
+      style="width:{{windowWidth*5}}px;height:{{resultsWrapperHeight/5}}px;top:{{resultsWrapperHeight/5*3}}px;"
+      animation="{{resultFourAnimation}}"
+    >
+    <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">A</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Alpha</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">透明度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aValueOfRGBA}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">A</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Alpha</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">透明度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aValueOfHSLA}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">K</view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Key Plate</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">定位套版色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{kValueOfCMYK}}%</text>
+        </view>
+      </view>
+    </view>
+
+
 
   </view>
 </view>

@@ -7,7 +7,8 @@ Page({
   data: {
     titleOpacity: 1,
     currentType: 0,
-    typeIcons: ["#", "RGBA", "HLSA", "CMYK", "L*A*B*"],
+    currentColor: "",
+    typeIcons: ["#", "RGBA", "HSLA", "CMYK", "Lab"],
 
     sixteenValue: "",
 
@@ -16,10 +17,10 @@ Page({
     bValueOfRGBA: "",
     aValueOfRGBA: "",
 
-    hValueOfHLSA: "",
-    lValueOfHLSA: "",
-    sValueOfHLSA: "",
-    aValueOfHLSA: "",
+    hValueOfHSLA: "",
+    lValueOfHSLA: "",
+    sValueOfHSLA: "",
+    aValueOfHSLA: "",
 
     cValueOfCMYK: "",
     mValueOfCMYK: "",
@@ -41,7 +42,12 @@ Page({
     resultsWrapperHeight: 0,
 
     touchStartLeft: 0,
-    animationData: {}
+    duration: 600,
+    animationData: {},
+    resultOneAnimation: {},
+    resultTwoAnimation: {},
+    resultThreeAnimation: {},
+    resultFourAnimation: {},
   },
 
   /**
@@ -55,15 +61,35 @@ Page({
         var windowWidth = res.windowWidth
         var windowHeight = res.windowHeight
 
+        var typeIconsUI
+        if (windowWidth < 375) {
+          typeIconsUI = {
+            width: 250,
+            height: 160
+          }
+        } else {
+          typeIconsUI = {
+            width: 300,
+            height: 160
+          }
+        }
+
         that.setData({
-          firstTypeMarginLeft: (windowWidth - 250) / 2,
+          typeIconsUI: typeIconsUI,
+          windowWidth: windowWidth,
+          windowHeight: windowHeight,
+          firstTypeMarginLeft: (windowWidth - typeIconsUI.width) / 2,
           resultsWrapperHeight: res.windowHeight 
           // 顶部导航栏高度
           // + 64 
           // 引导语高度
           - 56 
           // 格式选择高度
-          - 132 
+          - 160
+          // indicator
+          - 16
+          // seperator
+          -1 
           // 结果展示上边距
           - 16
         })
@@ -148,7 +174,7 @@ Page({
           inputsWrapperHeight: 400
         })
         break
-      case "HLSA":
+      case "HSLA":
         this.setData({
           currentType: 2,
           inputsWrapperHeight: 400
@@ -160,7 +186,7 @@ Page({
           inputsWrapperHeight: 400
         })
         break
-      case "L*A*B*":
+      case "Lab":
         this.setData({
           currentType: 4,
           inputsWrapperHeight: 350
@@ -194,77 +220,129 @@ Page({
 
 
   onROfRGBAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue)> 255) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      rValueOfRGBA: e.detail.value.replace(" ", ""),
+      rValueOfRGBA: strValue,
     })
   },
   onGOfRGBAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 255) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      gValueOfRGBA: e.detail.value.replace(" ", ""),
+      gValueOfRGBA: strValue,
     })
   },
   onBOfRGBAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 255) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      bValueOfRGBA: e.detail.value.replace(" ", ""),
+      bValueOfRGBA: strValue,
     })
   },
   onAOfRGBAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      aValueOfRGBA: e.detail.value.replace(" ", ""),
+      aValueOfRGBA: strValue,
     })
   },
 
 
 
-  onHOfHLSAInput: function (e) {
+  onHOfHSLAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 360) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      hValueOfHLSA: e.detail.value.replace(" ", ""),
+      hValueOfHSLA: strValue,
     })
   },
-  onLOfHLSAInput: function (e) {
+  onLOfHSLAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      lValueOfHLSA: e.detail.value.replace(" ", ""),
+      lValueOfHSLA: strValue,
     })
   },
-  onSOfHLSAInput: function (e) {
+  onSOfHSLAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      sValueOfHLSA: e.detail.value.replace(" ", ""),
+      sValueOfHSLA: strValue,
     })
   },
-  onAOfHLSAInput: function (e) {
+  onAOfHSLAInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      aValueOfHLSA: e.detail.value.replace(" ", ""),
+      aValueOfHSLA: strValue,
     })
   },
 
 
 
   onCOfCMYKInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      cValueOfCMYK: e.detail.value.replace(" ", ""),
+      cValueOfCMYK: strValue,
     })
   },
   onMOfCMYKInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      mValueOfCMYK: e.detail.value.replace(" ", ""),
+      mValueOfCMYK: strValue,
     })
   },
   onYOfCMYKInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      yValueOfCMYK: e.detail.value.replace(" ", ""),
+      yValueOfCMYK: strValue,
     })
   },
   onKOfCMYKInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      kValueOfCMYK: e.detail.value.replace(" ", ""),
+      kValueOfCMYK: strValue,
     })
   },
 
 
 
   onLOfLABInput: function (e) {
+    var strValue = e.detail.value.replace(" ", "")
+    if (parseInt(strValue) > 100) {
+      strValue = strValue.substring(0, strValue.length - 1)
+    }
     this.setData({
-      lValueOfLAB: e.detail.value.replace(" ", ""),
+      lValueOfLAB: strValue,
     })
   },
   onAOfLABInput: function (e) {
@@ -318,9 +396,40 @@ Page({
       delay: 0
     })
 
+    var resultOneAnimation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 60
+    })
+    var resultTwoAnimation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 120
+    })
+    var resultThreeAnimation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 180
+    })
+    var resultFourAnimation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 240
+    })
+
+    var resultLeft = -index * that.data.windowWidth
+
     that.setData({
       currentType: index,
       animationData: animation.left(left).step().export(),
+      resultOneAnimation: resultOneAnimation.left(resultLeft).step().export(),
+      resultTwoAnimation: resultTwoAnimation.left(resultLeft).step().export(),
+      resultThreeAnimation: resultThreeAnimation.left(resultLeft).step().export(),
+      resultFourAnimation: resultFourAnimation.left(resultLeft).step().export(),
     })
   }
 })

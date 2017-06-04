@@ -1,11 +1,18 @@
 .instruction {
+  position: fixed;
+  width: 100%;
   height: 24px;
   line-height: 24px;
   padding: 16px 0;
+  top: 0;
+  left: 0;
+  text-align: center;
 }
 
 .types-wrapper {
-  position: relative;
+  position: fixed;
+  top: 56px;
+  left: 0;
   width: 100%;
   height: 160px;
 }
@@ -114,10 +121,7 @@
   text-align: center;
 }
 
-.results-wrapper {
-  margin-top: 16px;
-  background-color: lightyellow;
-}
+
 
 
 /*RGBA*/
@@ -156,13 +160,13 @@
   text-align: center;
 }
 
-/*HLSA*/
-.type-wrapper .hlsa {
+/*HSLA*/
+.type-wrapper .hsla {
   width: 100%;
   height: auto;
 }
 
-.hlsa text {
+.hsla text {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -171,7 +175,7 @@
   text-align: center;
 }
 
-.hlsa input {
+.hsla input {
   border-radius: 4px;
   font-size: 24px;
   font-weight: bolder;
@@ -182,7 +186,7 @@
   margin-bottom: 8px;
 }
 
-.hlsa .percent {
+.hsla .percent {
   position: absolute;
   font-size: 24px;
   width: 40px;
@@ -265,8 +269,12 @@
 }
 
 .indicator-wrapper {
+  position: fixed;
   width: 80px;
   height: 16px;
+  top: 216px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .indicator {
   width: 4px;
@@ -277,6 +285,52 @@
   float: left;
 }
 .seperator {
+  position: fixed;
   height: 1px;
+  top: 232px;
+  left: 50%;
   background-color: #ededed;
+  transform: translate(-50%, 0);
+}
+
+
+.results-wrapper {
+  position: fixed;
+  left: 0;
+  top: 218px;
+  margin-top: 16px;
+}
+.result {
+  position: absolute;
+  left: 0;
+}
+.reslut-wrapper {
+  float: left;
+}
+.reslut-content-wrapper {
+  position: relative;
+  margin: 0 auto;
+}
+.value-name {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  left: 0;
+  background-color: rgba(0,0,0,0.1);
+}
+.full-name {
+  position: absolute;
+  left: 60px;
+}
+.desc {
+  position: absolute;
+  left: 60px;
+}
+.value {
+  position: absolute;
+  right: 0;
+  line-height: 40px;
+  font-size: 36px;
+  font-weight: bold;
 }

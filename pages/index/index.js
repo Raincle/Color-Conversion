@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js')
 var app = getApp()
 Page({
 
@@ -519,6 +520,7 @@ Page({
         var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
         var g = parseInt(sixteenValue[2] + sixteenValue[3], 16)
         var b = parseInt(sixteenValue[4] + sixteenValue[5], 16)
+        var hslArr = util.rgbToHsl(r,g,b)
         that.setData({
           currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + 1 + ')',
           rValueOfRGBA: r,
@@ -526,9 +528,9 @@ Page({
           bValueOfRGBA: b,
           aValueOfRGBA: '100',
 
-          hValueOfHSLA: '',
-          sValueOfHSLA: '',
-          lValueOfHSLA: '',
+          hValueOfHSLA: hslArr[0],
+          sValueOfHSLA: hslArr[1],
+          lValueOfHSLA: hslArr[2],
           aValueOfHSLA: '100',
 
           cValueOfCMYK: '',

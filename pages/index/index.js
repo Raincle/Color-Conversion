@@ -9,9 +9,11 @@ Page({
     titleOpacity: 1,
     currentType: 0,
     currentColor: "",
-    typeIcons: ["#", "RGBA", "HSLA", "CMYK", "Lab"],
+    typeIcons: ["#", "RGBA"],
+    // typeIcons: ["#", "RGBA", "HSLA", "CMYK", "Lab"],
 
     sixteenValue: "",
+    aOfSixteenValue: "",
 
     rValueOfRGBA: "",
     gValueOfRGBA: "",
@@ -78,7 +80,16 @@ Page({
           }
         }
 
+        var defaultColor = util.colorGenerator()
+
         that.setData({
+          currentColor: 'rgba(' + defaultColor.r + ',' + defaultColor.g + ',' + defaultColor.b + ',' + 1 + ')',
+          sixteenValue: util.rgbToSixteen(defaultColor.r, defaultColor.g, defaultColor.b, 100).color,
+          aOfSixteenValue: "ff",
+          rValueOfRGBA: defaultColor.r,
+          gValueOfRGBA: defaultColor.g,
+          bValueOfRGBA: defaultColor.b,
+          aValueOfRGBA: 100,
           typeIconsUI: typeIconsUI,
           windowWidth: windowWidth,
           windowHeight: windowHeight,
@@ -520,7 +531,7 @@ Page({
         var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
         var g = parseInt(sixteenValue[2] + sixteenValue[3], 16)
         var b = parseInt(sixteenValue[4] + sixteenValue[5], 16)
-        var hslArr = util.rgbToHsl(r,g,b)
+        // var hslArr = util.rgbToHsl(r,g,b)
         that.setData({
           currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + 1 + ')',
           rValueOfRGBA: r,
@@ -528,19 +539,19 @@ Page({
           bValueOfRGBA: b,
           aValueOfRGBA: '100',
 
-          hValueOfHSLA: hslArr[0],
-          sValueOfHSLA: hslArr[1],
-          lValueOfHSLA: hslArr[2],
-          aValueOfHSLA: '100',
+          // hValueOfHSLA: hslArr[0],
+          // sValueOfHSLA: hslArr[1],
+          // lValueOfHSLA: hslArr[2],
+          // aValueOfHSLA: '100',
 
-          cValueOfCMYK: '',
-          mValueOfCMYK: '',
-          yValueOfCMYK: '',
-          kValueOfCMYK: '',
+          // cValueOfCMYK: '',
+          // mValueOfCMYK: '',
+          // yValueOfCMYK: '',
+          // kValueOfCMYK: '',
 
-          lValueOfLAB: '',
-          aValueOfLAB: '',
-          bValueOfLAB: '',
+          // lValueOfLAB: '',
+          // aValueOfLAB: '',
+          // bValueOfLAB: '',
         })
         break
       case 1:
@@ -548,95 +559,96 @@ Page({
         var g = that.data.gValueOfRGBA
         var b = that.data.bValueOfRGBA
         var a = that.data.aValueOfRGBA
-        var sixteen = parseInt(r).toString(16) + parseInt(g).toString(16) + parseInt(b).toString(16)
+        var sixteen = util.rgbToSixteen(r, g, b, a)
         that.setData({
           currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + a / 100 + ')',
-          sixteenValue: sixteen,
+          sixteenValue: sixteen.color,
+          aOfSixteenValue: sixteen.a,
 
-          hValueOfHSLA: '',
-          sValueOfHSLA: '',
-          lValueOfHSLA: '',
-          aValueOfHSLA: a,
+          // hValueOfHSLA: '',
+          // sValueOfHSLA: '',
+          // lValueOfHSLA: '',
+          // aValueOfHSLA: a,
 
-          cValueOfCMYK: '',
-          mValueOfCMYK: '',
-          yValueOfCMYK: '',
-          kValueOfCMYK: '',
+          // cValueOfCMYK: '',
+          // mValueOfCMYK: '',
+          // yValueOfCMYK: '',
+          // kValueOfCMYK: '',
 
-          lValueOfLAB: '',
-          aValueOfLAB: '',
-          bValueOfLAB: '',
+          // lValueOfLAB: '',
+          // aValueOfLAB: '',
+          // bValueOfLAB: '',
         })
         break
-      case 2:
-        var hValueOfHSLA = that.data.hValueOfHSLA
-        var lValueOfHSLA = that.data.lValueOfHSLA
-        var sValueOfHSLA = that.data.sValueOfHSLA
-        var aValueOfHSLA = that.data.aValueOfHSLA
-        that.setData({
-          sixteenValue: '',
+      // case 2:
+      //   var hValueOfHSLA = that.data.hValueOfHSLA
+      //   var lValueOfHSLA = that.data.lValueOfHSLA
+      //   var sValueOfHSLA = that.data.sValueOfHSLA
+      //   var aValueOfHSLA = that.data.aValueOfHSLA
+      //   that.setData({
+      //     sixteenValue: '',
 
-          rValueOfRGBA: '',
-          gValueOfRGBA: '',
-          bValueOfRGBA: '',
-          aValueOfRGBA: '',
+      //     rValueOfRGBA: '',
+      //     gValueOfRGBA: '',
+      //     bValueOfRGBA: '',
+      //     aValueOfRGBA: '',
 
-          cValueOfCMYK: '',
-          mValueOfCMYK: '',
-          yValueOfCMYK: '',
-          kValueOfCMYK: '',
+      //     cValueOfCMYK: '',
+      //     mValueOfCMYK: '',
+      //     yValueOfCMYK: '',
+      //     kValueOfCMYK: '',
 
-          lValueOfLAB: '',
-          aValueOfLAB: '',
-          bValueOfLAB: '',
-        })
-        break
-      case 3:
-        var cValueOfCMYK = that.data.cValueOfCMYK
-        var mValueOfCMYK = that.data.mValueOfCMYK
-        var yValueOfCMYK = that.data.yValueOfCMYK
-        var kValueOfCMYK = that.data.kValueOfCMYK
-        that.setData({
-          sixteenValue: '',
+      //     lValueOfLAB: '',
+      //     aValueOfLAB: '',
+      //     bValueOfLAB: '',
+      //   })
+      //   break
+      // case 3:
+      //   var cValueOfCMYK = that.data.cValueOfCMYK
+      //   var mValueOfCMYK = that.data.mValueOfCMYK
+      //   var yValueOfCMYK = that.data.yValueOfCMYK
+      //   var kValueOfCMYK = that.data.kValueOfCMYK
+      //   that.setData({
+      //     sixteenValue: '',
 
-          rValueOfRGBA: '',
-          gValueOfRGBA: '',
-          bValueOfRGBA: '',
-          aValueOfRGBA: '',
+      //     rValueOfRGBA: '',
+      //     gValueOfRGBA: '',
+      //     bValueOfRGBA: '',
+      //     aValueOfRGBA: '',
 
-          hValueOfHSLA: '',
-          sValueOfHSLA: '',
-          lValueOfHSLA: '',
-          aValueOfHSLA: '',
+      //     hValueOfHSLA: '',
+      //     sValueOfHSLA: '',
+      //     lValueOfHSLA: '',
+      //     aValueOfHSLA: '',
 
-          lValueOfLAB: '',
-          aValueOfLAB: '',
-          bValueOfLAB: '',
-        })
-        break
-      case 4:
-        var lValueOfLAB = that.data.lValueOfLAB
-        var aValueOfLAB = that.data.aValueOfLAB
-        var bValueOfLAB = that.data.bValueOfLAB
-        that.setData({
-          sixteenValue: '',
+      //     lValueOfLAB: '',
+      //     aValueOfLAB: '',
+      //     bValueOfLAB: '',
+      //   })
+      //   break
+      // case 4:
+      //   var lValueOfLAB = that.data.lValueOfLAB
+      //   var aValueOfLAB = that.data.aValueOfLAB
+      //   var bValueOfLAB = that.data.bValueOfLAB
+      //   that.setData({
+      //     sixteenValue: '',
 
-          rValueOfRGBA: '',
-          gValueOfRGBA: '',
-          bValueOfRGBA: '',
-          aValueOfRGBA: '',
+      //     rValueOfRGBA: '',
+      //     gValueOfRGBA: '',
+      //     bValueOfRGBA: '',
+      //     aValueOfRGBA: '',
 
-          hValueOfHSLA: '',
-          sValueOfHSLA: '',
-          lValueOfHSLA: '',
-          aValueOfHSLA: '',
+      //     hValueOfHSLA: '',
+      //     sValueOfHSLA: '',
+      //     lValueOfHSLA: '',
+      //     aValueOfHSLA: '',
 
-          cValueOfCMYK: '',
-          mValueOfCMYK: '',
-          yValueOfCMYK: '',
-          kValueOfCMYK: '',
-        })
-        break
+      //     cValueOfCMYK: '',
+      //     mValueOfCMYK: '',
+      //     yValueOfCMYK: '',
+      //     kValueOfCMYK: '',
+      //   })
+      //   break
       default:
         break
     }

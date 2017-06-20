@@ -66,9 +66,33 @@ function hslToRgb(h, s, l) {
   return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
+function rgbToSixteen(r, g, b, a) {
+  function formatSixteen(s) {
+    if (s.length == 1) {
+      s = "0" + s
+    }
+    return s
+  }
+  var rString = formatSixteen(parseInt(r).toString(16))
+  var gString = formatSixteen(parseInt(g).toString(16))
+  var bString = formatSixteen(parseInt(b).toString(16))
+  var aString = formatSixteen(parseInt(a / 100 * 255).toString(16))
+  
+  return {color: rString + gString + bString ,a: aString }
+}
+
+function colorGenerator() {
+  var time = new Date()
+  var r = Math.floor(time.getMinutes() / 60 * 255)
+  var g = Math.floor(time.getSeconds() / 60 * 255)
+  var b = Math.floor(time.getMilliseconds() / 1000 * 255)
+  return {r:r, g:g, b:b}
+}
 
 module.exports = {
   shuffleArray: shuffleArray,
+  rgbToSixteen: rgbToSixteen,
   rgbToHsl: rgbToHsl,
-  hslToRgb: hslToRgb
+  hslToRgb: hslToRgb,
+  colorGenerator: colorGenerator
 }

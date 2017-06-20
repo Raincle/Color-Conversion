@@ -21,8 +21,10 @@
       <view class="type-wrapper">
 
         <view class="sixteen" wx:if="{{currentType == 0}}">
+        <text>A</text>
+        <input value="{{aOfSixteenValue}}" placeholder="0~ff" placeholder-style="color: lightgray;" maxlength="2" bindinput="onAOfSixteenInput" type="number"/>
         <text>#</text>
-        <input value="{{sixteenValue}}" placeholder="ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
+        <input value="{{sixteenValue}}" placeholder="0~ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
         </view>
 
         <view class="rgba" wx:if="{{currentType == 1}}">

@@ -180,7 +180,7 @@ Page({
       case "#":
         this.setData({
           currentType: 0,
-          inputsWrapperHeight: 300
+          inputsWrapperHeight: 320
         })
         break
       case "RGBA":
@@ -230,6 +230,13 @@ Page({
     var strValue = e.detail.value.replace(/[^0-9a-f]/ig, "")
     this.setData({
       sixteenValue: strValue,
+    })
+    this.colorUpdate()
+  },
+  onAOfSixteenInput: function(e) {
+    var strValue = e.detail.value.replace(/[^0-9a-f]/ig, "")
+    this.setData({
+      aOfSixteenValue: strValue,
     })
     this.colorUpdate()
   },
@@ -445,9 +452,22 @@ Page({
   },
 
   confirmInputs: function () {
+    //Process Empty
+    var sixteenValue = this.data.sixteenValue
+    if (sixteenValue.length == 0) {
+      sixteenValue = "ffffff"
+    }
+    var aOfSixteenValue = this.data.aOfSixteenValue
+    if (aOfSixteenValue.length ==1) {
+      aOfSixteenValue = "0" + aOfSixteenValue
+    } else if (aOfSixteenValue.length == 0) {
+      aOfSixteenValue = "ff"
+    }
     this.setData({
       titleOpacity: 1,
-      shouldShowInputs: "hide-inputs-wrapper"
+      shouldShowInputs: "hide-inputs-wrapper",
+      aOfSixteenValue: aOfSixteenValue,
+      sixteenValue: sixteenValue
     })
     this.colorUpdate()
   },
@@ -528,16 +548,21 @@ Page({
     switch (currentType) {
       case 0:
         var sixteenValue = that.data.sixteenValue
+        var aOfSixteenValue = that.data.aOfSixteenValue
         var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
         var g = parseInt(sixteenValue[2] + sixteenValue[3], 16)
         var b = parseInt(sixteenValue[4] + sixteenValue[5], 16)
+        var a = Math.floor(parseInt(aOfSixteenValue, 16) / 255 * 100)
         // var hslArr = util.rgbToHsl(r,g,b)
         that.setData({
           currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + 1 + ')',
+          sixteenValue: sixteenValue,
+          aOfSixteenValue: aOfSixteenValue,
+
           rValueOfRGBA: r,
           gValueOfRGBA: g,
           bValueOfRGBA: b,
-          aValueOfRGBA: '100',
+          aValueOfRGBA: a,
 
           // hValueOfHSLA: hslArr[0],
           // sValueOfHSLA: hslArr[1],

@@ -9,7 +9,7 @@ Page({
     titleOpacity: 1,
     currentType: 0,
     currentColor: "",
-    typeIcons: ["#", "RGBA"],
+    typeIcons: ["十六进制", "RGBA"],
     // typeIcons: ["#", "RGBA", "HSLA", "CMYK", "Lab"],
 
     sixteenValue: "",
@@ -44,7 +44,6 @@ Page({
     firstTypeMarginLeft: 0,
     shouldShowInputs: "hide-inputs-wrapper",
     inputsWrapperHeight: 300,
-    animationData: {},
     resultsWrapperHeight: 0,
 
     touchStartLeft: 0,
@@ -54,6 +53,11 @@ Page({
     resultTwoAnimation: {},
     resultThreeAnimation: {},
     resultFourAnimation: {},
+
+    shouldAnimateColor: true,
+    colorAnimation: {},
+    rotateLeftAnimation: {},
+    rotateRightAnimation: {}
   },
 
   /**
@@ -61,6 +65,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+
     wx.getSystemInfo({
       success: function (res) {
 
@@ -80,16 +85,12 @@ Page({
           }
         }
 
-        var defaultColor = util.colorGenerator()
+        var itervalId = setInterval(function() {
+          that.colorAnimator()
+        }, 3000) 
 
         that.setData({
-          currentColor: 'rgba(' + defaultColor.r + ',' + defaultColor.g + ',' + defaultColor.b + ',' + 1 + ')',
-          sixteenValue: util.rgbToSixteen(defaultColor.r, defaultColor.g, defaultColor.b, 100).color,
-          aOfSixteenValue: "ff",
-          rValueOfRGBA: defaultColor.r,
-          gValueOfRGBA: defaultColor.g,
-          bValueOfRGBA: defaultColor.b,
-          aValueOfRGBA: 100,
+          colorAnimatorIntervalId: itervalId,
           typeIconsUI: typeIconsUI,
           windowWidth: windowWidth,
           windowHeight: windowHeight,
@@ -176,6 +177,7 @@ Page({
   },
 
   bindChooseType: function(e) {
+    var that = this
     switch (e.target.id) {
       case "#":
         this.setData({
@@ -211,8 +213,11 @@ Page({
         break
     }
 
+    clearInterval(that.data.colorAnimatorIntervalId)
 
     this.setData({ 
+      colorAnimatorIntervalId: '',
+      shouldAnimateColor: false,
       titleOpacity: 0,
       shouldShowInputs: "show-inputs-wrapper"
     })
@@ -532,6 +537,20 @@ Page({
 
     var resultLeft = -index * that.data.windowWidth
 
+
+    var rotateAnimation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: that.data.duration,
+      timingFunction: "ease",
+      delay: 240
+    })
+    if ((end - start) > 0) {
+      rotateAnimation.rotate(360).step()
+    } else if ((end - start) < 0) {
+      rotateAnimation.rotate(0).step()      
+    }
+
+
     that.setData({
       currentType: index,
       animationData: animation.left(left).step().export(),
@@ -539,6 +558,7 @@ Page({
       resultTwoAnimation: resultTwoAnimation.left(resultLeft).step().export(),
       resultThreeAnimation: resultThreeAnimation.left(resultLeft).step().export(),
       resultFourAnimation: resultFourAnimation.left(resultLeft).step().export(),
+      rotateAnimation: rotateAnimation,
     })
   },
   colorUpdate: function() {
@@ -676,6 +696,36 @@ Page({
       //   break
       default:
         break
+    }
+  },
+  colorAnimator: function() {
+    var that = this
+    var shouldAnimateColor = that.data.shouldAnimateColor
+    if (shouldAnimateColor) {
+
+      var defaultColor = util.colorGenerator()
+
+      var colorAnimation = wx.createAnimation({
+        // transformOrigin: "50% 50%",
+        duration: that.data.duration,
+        timingFunction: "ease",
+        delay: 0
+      })
+      var color = 'rgba(' + defaultColor.r + ',' + defaultColor.g + ',' + defaultColor.b + ',' + 1 + ')'
+      var sixteenColor = util.rgbToSixteen(defaultColor.r, defaultColor.g, defaultColor.b, 100).color
+      colorAnimation.opacity(0.1).scale(0.9, 0.9).step()
+      colorAnimation.opacity(1).scale(1, 1).step()
+
+      that.setData({
+        colorAnimation: colorAnimation.export(),
+        currentColor: color,
+        sixteenValue: sixteenColor,
+        aOfSixteenValue: "ff",
+        rValueOfRGBA: defaultColor.r,
+        gValueOfRGBA: defaultColor.g,
+        bValueOfRGBA: defaultColor.b,
+        aValueOfRGBA: 100
+      })
     }
   }
 })

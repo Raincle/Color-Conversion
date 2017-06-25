@@ -9,7 +9,7 @@ Page({
     titleOpacity: 1,
     currentType: 0,
     currentColor: "",
-    typeIcons: ["十六进制", "RGBA"],
+    typeIcons: ["RGBA", "十六进制"],
     // typeIcons: ["#", "RGBA", "HSLA", "CMYK", "Lab"],
 
     sixteenValue: "",
@@ -179,16 +179,16 @@ Page({
   bindChooseType: function(e) {
     var that = this
     switch (e.target.id) {
-      case "#":
-        this.setData({
-          currentType: 0,
-          inputsWrapperHeight: 320
-        })
-        break
       case "RGBA":
         this.setData({
-          currentType: 1,
+          currentType: 0,
           inputsWrapperHeight: 400
+        })
+        break
+      case "十六进制":
+        this.setData({
+          currentType: 1,
+          inputsWrapperHeight: 320
         })
         break
       case "HSLA":
@@ -253,6 +253,7 @@ Page({
     if (parseInt(strValue)> 255) {
       strValue = strValue.substring(0, strValue.length - 1)
     }
+    console.log(strValue)
     this.setData({
       rValueOfRGBA: strValue,
     })
@@ -567,6 +568,32 @@ Page({
     var currentColor
     switch (currentType) {
       case 0:
+        var r = that.data.rValueOfRGBA
+        var g = that.data.gValueOfRGBA
+        var b = that.data.bValueOfRGBA
+        var a = that.data.aValueOfRGBA
+        var sixteen = util.rgbToSixteen(r, g, b, a)
+        that.setData({
+          currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + a / 100 + ')',
+          sixteenValue: sixteen.color,
+          aOfSixteenValue: sixteen.a,
+
+          // hValueOfHSLA: '',
+          // sValueOfHSLA: '',
+          // lValueOfHSLA: '',
+          // aValueOfHSLA: a,
+
+          // cValueOfCMYK: '',
+          // mValueOfCMYK: '',
+          // yValueOfCMYK: '',
+          // kValueOfCMYK: '',
+
+          // lValueOfLAB: '',
+          // aValueOfLAB: '',
+          // bValueOfLAB: '',
+        })
+        break
+      case 1:
         var sixteenValue = that.data.sixteenValue
         var aOfSixteenValue = that.data.aOfSixteenValue
         var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
@@ -588,32 +615,6 @@ Page({
           // sValueOfHSLA: hslArr[1],
           // lValueOfHSLA: hslArr[2],
           // aValueOfHSLA: '100',
-
-          // cValueOfCMYK: '',
-          // mValueOfCMYK: '',
-          // yValueOfCMYK: '',
-          // kValueOfCMYK: '',
-
-          // lValueOfLAB: '',
-          // aValueOfLAB: '',
-          // bValueOfLAB: '',
-        })
-        break
-      case 1:
-        var r = that.data.rValueOfRGBA
-        var g = that.data.gValueOfRGBA
-        var b = that.data.bValueOfRGBA
-        var a = that.data.aValueOfRGBA
-        var sixteen = util.rgbToSixteen(r, g, b, a)
-        that.setData({
-          currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + a / 100 + ')',
-          sixteenValue: sixteen.color,
-          aOfSixteenValue: sixteen.a,
-
-          // hValueOfHSLA: '',
-          // sValueOfHSLA: '',
-          // lValueOfHSLA: '',
-          // aValueOfHSLA: a,
 
           // cValueOfCMYK: '',
           // mValueOfCMYK: '',

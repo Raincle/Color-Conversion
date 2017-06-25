@@ -26,14 +26,7 @@
       <text  class="inputs-wrapper-title">请输入需要转换的颜色</text>
       <view class="type-wrapper">
 
-        <view class="sixteen" wx:if="{{currentType == 0}}">
-        <text>A</text>
-        <input value="{{aOfSixteenValue}}" placeholder="0~ff" placeholder-style="color: lightgray;" maxlength="2" bindinput="onAOfSixteenInput" type="number"/>
-        <text>#</text>
-        <input value="{{sixteenValue}}" placeholder="0~ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
-        </view>
-
-        <view class="rgba" wx:if="{{currentType == 1}}">
+        <view class="rgba" wx:if="{{currentType == 0}}">
         <text>R</text>
         <input value="{{rValueOfRGBA}}" placeholder="0~255" placeholder-style="color: lightgray;" maxlength="3" bindinput="onROfRGBAInput" type="number"/>
         <text>G</text>
@@ -44,6 +37,15 @@
         <text class="unit">%</text>
         <input value="{{aValueOfRGBA}}" placeholder="0~100" placeholder-style="color: lightgray;" maxlength="3" bindinput="onAOfRGBAInput" type="number"/>
         </view>
+
+        <view class="sixteen" wx:if="{{currentType == 1}}">
+        <text>A</text>
+        <input value="{{aOfSixteenValue}}" placeholder="0~ff" placeholder-style="color: lightgray;" maxlength="2" bindinput="onAOfSixteenInput" type="number"/>
+        <text>#</text>
+        <input value="{{sixteenValue}}" placeholder="0~ffffff" placeholder-style="color: lightgray;" maxlength="6" bindinput="onSixteenInput" />
+        </view>
+
+        
 
         <view class="hsla" wx:if="{{currentType == 2}}">
         <text>H</text>
@@ -114,18 +116,18 @@
     >
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
-          <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">A</text></view>
-          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Alpha</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">透明度</text>          
-          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aOfSixteenValue}}</text>
-        </view>
-      </view>
-      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
-        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
           <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">R</text></view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Red</text>
           <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">红色色值</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{rValueOfRGBA}}</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+          <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">A</text></view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Alpha</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">透明度</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aOfSixteenValue}}</text>
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
@@ -161,18 +163,18 @@
     >
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
-        <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">#</text></view>
-          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">颜色</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">色值</text>          
-          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{sixteenValue}}</text>
+        <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">G</text></view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Green</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">绿色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{gValueOfRGBA}}</text>
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
-          <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">G</text></view>
-          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Green</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">绿色色值</text>          
-          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{gValueOfRGBA}}</text>
+          <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">#</text></view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">颜色</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{sixteenValue}}</text>
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
@@ -208,14 +210,15 @@
     >
     <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">B</text></view>
+          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Blue</text>
+          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">蓝色色值</text>          
+          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{bValueOfRGBA}}</text>
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
-          <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">B</text></view>
-          <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Blue</text>
-          <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">蓝色色值</text>          
-          <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{bValueOfRGBA}}</text>
+          
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
@@ -251,14 +254,15 @@
     >
     <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
         <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
-        </view>
-      </view>
-      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
-        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
         <view animation="{{rotateAnimation}}" class="value-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;"><text style="color:{{currentColor}}">A</text></view>
           <text class="full-name" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">Alpha</text>
           <text class="desc" style="bottom:{{(resultsWrapperHeight/5 - 40) / 2}}px;">透明度</text>          
           <text class="value" style="top:{{(resultsWrapperHeight/5 - 40) / 2}}px;">{{aValueOfRGBA}}%</text>
+        </view>
+      </view>
+      <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">
+        <view class="reslut-content-wrapper" style="width:{{typeIconsUI.width}}px;height:{{resultsWrapperHeight/5}}px;">
+        
         </view>
       </view>
       <view class="reslut-wrapper" style="width:{{windowWidth}}px;height:{{resultsWrapperHeight/5}}px;">

@@ -478,8 +478,27 @@ Page({
 
 
     var sixteenValue = this.data.sixteenValue
-    if (sixteenValue.length == 0) {
-      sixteenValue = "ffffff"
+    switch (sixteenValue.length) {
+      case 0:
+        sixteenValue = "ffffff"
+        break
+      case 1:
+        sixteenValue = "00000" + sixteenValue
+        break
+      case 2:
+        sixteenValue = "0000" + sixteenValue
+        break
+      case 3:
+        sixteenValue = sixteenValue[0] + sixteenValue[0] + sixteenValue[1] + sixteenValue[1] + sixteenValue[2] + sixteenValue[2]
+        break
+      case 4:
+        sixteenValue = "00" + sixteenValue
+        break
+      case 5:
+        sixteenValue = "0" + sixteenValue
+        break
+      default:
+        break
     }
     var aOfSixteenValue = this.data.aOfSixteenValue
     if (aOfSixteenValue.length ==1) {
@@ -618,10 +637,11 @@ Page({
       case 1:
         var sixteenValue = that.data.sixteenValue
         var aOfSixteenValue = that.data.aOfSixteenValue
-        var r = parseInt(sixteenValue[0] + sixteenValue[1], 16)
-        var g = parseInt(sixteenValue[2] + sixteenValue[3], 16)
-        var b = parseInt(sixteenValue[4] + sixteenValue[5], 16)
-        var a = Math.floor(parseInt(aOfSixteenValue, 16) / 255 * 100)
+        var rgbaColor = util.sixteenToRgba(sixteenValue, aOfSixteenValue)
+        var r = rgbaColor.r
+        var g = rgbaColor.g
+        var b = rgbaColor.b
+        var a = rgbaColor.a
         // var hslArr = util.rgbToHsl(r,g,b)
         that.setData({
           currentColor: 'rgba(' + r + ',' + g + ',' + b + ',' + 1 + ')',

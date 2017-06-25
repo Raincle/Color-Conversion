@@ -89,8 +89,17 @@ function colorGenerator() {
   return {r:r, g:g, b:b}
 }
 
+function sixteenToRgba(sixteen, a) {
+  var r = parseInt(sixteen[0] + sixteen[1], 16)
+  var g = parseInt(sixteen[2] + sixteen[3], 16)
+  var b = parseInt(sixteen[4] + sixteen[5], 16)
+  var a = Math.floor(parseInt(a, 16) / 255 * 100)
+    return {r: r, g: g, b: b, a: a}
+}
+
 module.exports = {
   shuffleArray: shuffleArray,
+  sixteenToRgba: sixteenToRgba,
   rgbToSixteen: rgbToSixteen,
   rgbToHsl: rgbToHsl,
   hslToRgb: hslToRgb,

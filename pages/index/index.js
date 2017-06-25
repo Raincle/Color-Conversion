@@ -43,7 +43,7 @@ Page({
     },
     firstTypeMarginLeft: 0,
     shouldShowInputs: "hide-inputs-wrapper",
-    inputsWrapperHeight: 300,
+    inputsWrapperHeight: 400,
     resultsWrapperHeight: 0,
 
     touchStartLeft: 0,
@@ -459,6 +459,24 @@ Page({
 
   confirmInputs: function () {
     //Process Empty
+    var rValueOfRGBA = this.data.rValueOfRGBA
+    if (rValueOfRGBA.length == 0) {
+      rValueOfRGBA = "0"
+    }
+    var gValueOfRGBA = this.data.gValueOfRGBA
+    if (gValueOfRGBA.length == 0) {
+      gValueOfRGBA = "0"
+    }
+    var bValueOfRGBA = this.data.bValueOfRGBA
+    if (bValueOfRGBA.length == 0) {
+      bValueOfRGBA = "0"
+    }
+    var aValueOfRGBA = this.data.aValueOfRGBA
+    if (aValueOfRGBA.length == 0) {
+      aValueOfRGBA = "0"
+    }
+
+
     var sixteenValue = this.data.sixteenValue
     if (sixteenValue.length == 0) {
       sixteenValue = "ffffff"
@@ -470,6 +488,10 @@ Page({
       aOfSixteenValue = "ff"
     }
     this.setData({
+      rValueOfRGBA: rValueOfRGBA,
+      gValueOfRGBA: gValueOfRGBA,
+      bValueOfRGBA: bValueOfRGBA,
+      aValueOfRGBA: aValueOfRGBA,
       titleOpacity: 1,
       shouldShowInputs: "hide-inputs-wrapper",
       aOfSixteenValue: aOfSixteenValue,

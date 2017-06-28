@@ -84,7 +84,8 @@ Page({
             height: 160
           }
         }
-
+        
+        that.colorAnimator()
         var itervalId = setInterval(function() {
           that.colorAnimator()
         }, 3000) 

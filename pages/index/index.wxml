@@ -91,7 +91,7 @@
 
 
         <view class="action-btn" bindtap="confirmInputs">
-          <text class="btn-text">好了</text>
+          <text class="btn-text">OK</text>
         </view>
       </view>
 

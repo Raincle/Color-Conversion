@@ -85,13 +85,8 @@ Page({
           }
         }
         
-        that.colorAnimator()
-        var itervalId = setInterval(function() {
-          that.colorAnimator()
-        }, 3000) 
 
         that.setData({
-          colorAnimatorIntervalId: itervalId,
           typeIconsUI: typeIconsUI,
           windowWidth: windowWidth,
           windowHeight: windowHeight,
@@ -125,21 +120,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    that.colorAnimator()
+    var itervalId = setInterval(function () {
+      that.colorAnimator()
+    }, 3000) 
+    that.setData({
+      shouldAnimateColor: true,
+      colorAnimatorIntervalId: itervalId,
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    var that = this
+    clearInterval(that.data.colorAnimatorIntervalId)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    var that = this
+    clearInterval(that.data.colorAnimatorIntervalId)
   },
 
   /**
